@@ -4,6 +4,23 @@
 const express = require( "express" )
 
 /**
+ * for the mongoDB connection
+ */
+const mongoose = require( "mongoose" )
+
+/**
+ * MongoDB Collection: Article
+ */
+const Article = require( "./models/article" )
+
+/**
+ * routes for article
+ */
+const articleRouter = require( "./routes/articles" )
+
+
+
+/**
  * Create a new middleware function to override the req.method property with a new value.
  * It is very important that this module is used before any module that needs to know the method of the request (for example, it must be used prior to the csurf module).
  */
@@ -17,25 +34,11 @@ const methodOverride = require( "method-override" )
  */
 const app = express();
 
-//It is very important that this module is used before any module that needs to know the method of the request (for example, it must be used prior to the csurf module).
-app.use( methodOverride( "_method" ) )
 
-/**
- * for the mongoDB connection
- */
-const mongoose = require( "mongoose" )
 
-/**
- * routes for article
- */
-const articleRouter = require( "./routes/articles" )
-//add router from module with a new path.
-app.use( "/articles", articleRouter );
 
-/**
- * MongoDB Collection: Article
- */
-const Article = require( "./models/article" )
+
+
 
 /**
  * connect with mongoDB
@@ -43,14 +46,22 @@ const Article = require( "./models/article" )
 mongoose.connect( "mongodb://localhost/blog", { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true } )
 
 /**
+ * change view engine
+ */
+app.set( "view engine", "ejs" )
+
+
+/**
  * we use a form and input via post: put this above the "app.use( " / articles", articleRouter )"
  */
 app.use( express.urlencoded( { extended: false } ) )
 
-/**
- * change view engine
- */
-app.set( "view engine", "ejs" )
+//It is very important that this module is used before any module that needs to know the method of the request (for example, it must be used prior to the csurf module).
+app.use( methodOverride( "_method" ) )
+
+//add router from module with a new path.
+app.use( "/articles", articleRouter );
+
 
 /**
  * change view folder

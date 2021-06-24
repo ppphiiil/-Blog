@@ -68,6 +68,8 @@ router.get( "/edit/:id", async ( req, res ) => {
  */
 router.post( "/", async ( req, res, next ) => {
     req.article = new Article();
+    console.log( "req.article-----", req.article );
+    console.log( "req.body-----", req );
     next()
     // let article = new Article( {
     //     title: req.body.title,
@@ -113,20 +115,24 @@ router.delete( "/:id", async ( req, res ) => {
  */
 function saveArticleAndRedirect( path ) {
     return async ( req, res ) => {
-        //creat article
-        let article = req.article
-
-        article.title = req.body.title
-        article.markdown = req.body.markdown
-        article.description = req.body.description
-
         try {
+            //creat article
+            let article = req.article
+            console.log( "article-----", article );
+            console.log( "req.body.title-----", req.body );
+
+            article.title = req.body.title
+
+            article.markdown = req.body.markdown
+            article.description = req.body.description
+
+
             //save
             article = await article.save()
             console.log( article );
             res.redirect( `/articles/${article.slug}` )
         } catch ( err ) {
-            console.log( err );
+            console.log( "ERROR:", err );
             //new page
             res.render( `articles/${path}`, { article: article } )
         }
