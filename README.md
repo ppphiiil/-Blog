@@ -6,9 +6,9 @@
 - delete an article
 
 ## Blog preview
-![blog](READMEimages/blog.png)
+![blog](blog.png)
 ## Create a new article
-![create](READMEimages/create.png)
+![create](create.png)
 ## Article preview
-![blog](READMEimages/article.png)
+![blog](article.png)
 
