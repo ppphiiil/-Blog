@@ -93,4 +93,4 @@ app.get( "/", async ( req, res ) => {
 } )
 
 
-app.listen( 3001, () => { console.log( "connected to db" ); } )
+app.listen( 3002, () => { console.log( "connected to db" ); } )

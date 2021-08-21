@@ -2,6 +2,7 @@
   "name": "blog",
   "version": "1.0.0",
   "description": "",
+   "homepage": ".",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -13,6 +14,7 @@
     "dompurify": "^2.2.9",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
+    "gh-pages": "^3.2.3",
     "jsdom": "^16.6.0",
     "marked": "^2.1.2",
     "method-override": "^3.0.0",
