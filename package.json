@@ -21,5 +21,8 @@
     "mongoose": "^5.12.14",
     "nodemon": "^2.0.7",
     "slugify": "^1.5.3"
+  },
+  "engines": {
+    "node": "14.x"
   }
 }
