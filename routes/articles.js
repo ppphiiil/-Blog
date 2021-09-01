@@ -24,8 +24,13 @@ const Article = require( "./../models/article" )
  * Show page where you can add a new Article / new.ejs
  */
 router.get( "/new", ( req, res ) => {
+    try{
     // show new.ejs
     res.render( "articles/new", { article: new Article() } );
+        } catch (err) {
+    // handle the error safely
+    console.log(err)
+}
 } )
 
 // WITHOUT SLUG
@@ -43,12 +48,17 @@ router.get( "/new", ( req, res ) => {
  */
 // WITH SLUG
 router.get( "/:slug", async ( req, res ) => {
+    try{
     //get specific article working with package slug
     const article = await Article.findOne( { slug: req.params.slug } )
     // if no article found, show main page
     if ( article === null ) res.redirect( "/" )
     //if found article by slug (title) show it on a page
     res.render( "articles/show", { article: article } )
+        } catch (err) {
+    // handle the error safely
+    console.log(err)
+}
 } )
 
 
@@ -56,10 +66,15 @@ router.get( "/:slug", async ( req, res ) => {
  * Edit your choosen article
  */
 router.get( "/edit/:id", async ( req, res ) => {
+    try{
     //get the article by id
     const article = await Article.findById( req.params.id )
     //show edit page with the data from article
     res.render( "articles/edit", { article: article } );
+        } catch (err) {
+    // handle the error safely
+    console.log(err)
+}
 } )
 
 
@@ -67,10 +82,15 @@ router.get( "/edit/:id", async ( req, res ) => {
  * send new article via  from form new.ejs via POST
  */
 router.post( "/", async ( req, res, next ) => {
+    try{
     req.article = new Article();
     console.log( "req.article-----", req.article );
     console.log( "req.body-----", req );
     next()
+        } catch (err) {
+    // handle the error safely
+    console.log(err)
+}
     // let article = new Article( {
     //     title: req.body.title,
     //     markdown: req.body.markdown,
@@ -93,8 +113,13 @@ router.post( "/", async ( req, res, next ) => {
  * Update Edit an article see edit.ejs
  */
 router.put( "/:id", async ( req, res, next ) => {
+    try{
     req.article = await Article.findById( req.params.id )
     next()
+        } catch (err) {
+    // handle the error safely
+    console.log(err)
+}
 
 }, saveArticleAndRedirect( "edit" ) )
 //above is a middelware
@@ -103,8 +128,13 @@ router.put( "/:id", async ( req, res, next ) => {
  * delete an article
  */
 router.delete( "/:id", async ( req, res ) => {
+    try{
     await Article.findByIdAndDelete( req.params.id )
     res.redirect( "/" )
+        } catch (err) {
+    // handle the error safely
+    console.log(err)
+}
 } )
 
 

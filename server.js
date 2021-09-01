@@ -84,13 +84,17 @@ app.get( "/", async ( req, res ) => {
     //         description: "Lorem sdf sdfsdf sdf s df sdfsdf sg f hg jhi kk jfgd gs d as",
     // 
     //     }]
-
+try{
     // get all Articles from mongoDB, sorted by date 
     const articles = await Article.find( {} ).sort( [['date', -1]] )
 
     //shie index.ejs with data from articles
     res.render( "articles/index", { articles: articles } )
-} )
+     } catch (err) {
+    // handle the error safely
+    console.log(err)
+}
+})
 
 
 app.listen( process.env.PORT || 3002, () => { console.log( "connected to db" ,process.env.PORT || 3002); } )
