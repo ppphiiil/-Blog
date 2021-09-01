@@ -43,7 +43,7 @@ const app = express();
 /**
  * connect with mongoDB
  */
-mongoose.connect( "mongodb://localhost/blog", { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true } )
+mongoose.connect( "mongodb+srv://admin:123@cluster0.1e0z1.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true } )
 
 /**
  * change view engine
@@ -66,7 +66,7 @@ app.use( "/articles", articleRouter );
 /**
  * change view folder
  */
-app.set( "views", __dirname + "/views" )
+//app.set( "view", __dirname + "/view" )
 
 /**
  * ROUTES
