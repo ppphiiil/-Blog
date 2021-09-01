@@ -66,7 +66,7 @@ app.use( "/articles", articleRouter );
 /**
  * change view folder
  */
-app.set( "views", __dirname + "/view" )
+app.set( "views", __dirname + "/views" )
 
 /**
  * ROUTES
