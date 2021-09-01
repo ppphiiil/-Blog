@@ -19,7 +19,7 @@ const Article = require( "./models/article" )
 const articleRouter = require( "./routes/articles" )
 
 
-
+require( "dotenv" ).config()
 /**
  * Create a new middleware function to override the req.method property with a new value.
  * It is very important that this module is used before any module that needs to know the method of the request (for example, it must be used prior to the csurf module).
@@ -66,7 +66,7 @@ app.use( "/articles", articleRouter );
 /**
  * change view folder
  */
-app.set( "views", __dirname + "/notview" )
+app.set( "views", __dirname + "/view" )
 
 /**
  * ROUTES
@@ -93,4 +93,4 @@ app.get( "/", async ( req, res ) => {
 } )
 
 
-app.listen( 3002, () => { console.log( "connected to db" ); } )
+app.listen( process.env.PORT || 3002, () => { console.log( "connected to db" ,process.env.PORT || 3002); } )
