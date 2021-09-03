@@ -35,11 +35,6 @@ const methodOverride = require( "method-override" )
 const app = express();
 
 
-
-
-
-
-
 /**
  * connect with mongoDB
  */
@@ -67,6 +62,7 @@ app.use( "/articles", articleRouter );
  * change view folder
  */
 //app.set( "view", __dirname + "/view" )
+
 
 /**
  * ROUTES
